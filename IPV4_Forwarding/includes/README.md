@@ -1,0 +1,1 @@
+## codex folder contains headers selected for different OSI Layers and some pre-defined field values
