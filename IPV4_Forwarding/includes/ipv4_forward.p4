@@ -2,13 +2,17 @@
 #define _IPV4_FORWARD_
 
 #include "headers.p4"
-#include "actions.p4" // For drop function
+// #include "actions.p4" // For drop function
 
 control ipv4_forwarding(
 	inout headers_t hdr,
 	inout metadata_t metadata,
 	inout standard_metadata_t standard_metadata
 ){
+	action drop(){
+		mark_to_drop(standard_metadata);
+	}
+	
 	action ipv4_forward(bit<48> dstAddr, bit<9> port){
 		standard_metadata.egress_spec = port;
 		hdr.ethernet.srcAddr = hdr.ethernet.dstAddr;

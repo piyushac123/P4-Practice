@@ -4,7 +4,7 @@
 #include "headers.p4"
 
 action drop(){
-	mark_to_drop();
+	mark_to_drop(standard_metadata);
 }
 
 #endif

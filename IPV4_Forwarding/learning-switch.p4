@@ -4,7 +4,7 @@
 #include "includes/headers.p4"
 #include "includes/parser.p4"
 #include "includes/checksum.p4"
-#include "includes/actions.p4"
+// #include "includes/actions.p4"
 
 // application
 #include "includes/packetio.p4"
@@ -17,8 +17,13 @@ control basic_learning_switch_ingress(
 	inout metadata_t metadata,
 	inout standard_metadata_t standard_metadata
 ){
+	action drop(){
+		mark_to_drop(standard_metadata);
+	}
+	
 	apply{
 		// Pipelines in Ingress ----> ?
+
 
 		// IPV4 Forwarding
 		ipv4_forwarding.apply(hdr, metadata, standard_metadata);
