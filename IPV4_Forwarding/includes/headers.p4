@@ -24,7 +24,7 @@ header packet_out_header_t{
 }
 
 // header struct for packet
-struct header_t{
+struct headers_t{
 	packet_out_header_t packet_out;
 	packet_in_header_t packet_in;
 	ethernet_t ethernet;

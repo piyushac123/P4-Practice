@@ -6,7 +6,7 @@
 // PARSER
 parser basic_learning_switch_parser(
 	packet_in packet,
-	out header_t hdr,
+	out headers_t hdr,
 	inout metadata_t metadata,
 	inout standard_metadata_t standard_metadata
 ){
@@ -37,7 +37,7 @@ parser basic_learning_switch_parser(
 // DEPARSER
 control basic_learning_switch_deparser(
 	packet_out packet,
-	in header_t hdr
+	in headers_t hdr
 ){
 	// Emit only if header is valid
 	apply{
