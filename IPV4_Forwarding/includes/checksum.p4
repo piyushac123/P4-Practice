@@ -34,7 +34,7 @@ control basic_learning_switch_computeCk(
 			},
 			hdr.ipv4.hdrChecksum,
 			HashAlgorithm.csum16
-		)
+		);
 	}
 }
 

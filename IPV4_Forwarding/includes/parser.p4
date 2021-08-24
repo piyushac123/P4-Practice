@@ -23,7 +23,7 @@ parser basic_learning_switch_parser(
 	}
 	state parse_ethernet{
 		packet.extract(hdr.ethernet);
-		transtion select(hdr.ethernet.etherType){
+		transition select(hdr.ethernet.etherType){
 			TYPE_IPV4 : parse_ipv4;
 			default : accept;
 		}
@@ -41,7 +41,7 @@ control basic_learning_switch_deparser(
 ){
 	// Emit only if header is valid
 	apply{
-		packet.emit(hdr.packet_in)
+		packet.emit(hdr.packet_in);
 		packet.emit(hdr.ethernet);
 		packet.emit(hdr.ipv4);
 		packet.emit(hdr.tcp);
