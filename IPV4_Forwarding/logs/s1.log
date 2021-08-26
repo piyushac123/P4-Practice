@@ -1,0 +1,590 @@
+Calling target program-options parser
+[10:41:24.743] [bmv2] [D] [thread 5467] Set default default entry for table 'basic_learning_switch_ingress.ipv4_forwarding.ipv4_lpm': basic_learning_switch_ingress.ipv4_forwarding.drop - 
+[10:41:24.744] [bmv2] [D] [thread 5467] Set default default entry for table 'tbl_act': act - 
+[10:41:24.744] [bmv2] [D] [thread 5467] Set default default entry for table 'basic_learning_switch_ingress.arp.arp_exact': basic_learning_switch_ingress.arp.send_to_cpu - 
+Adding interface s1-eth1 as port 1
+[10:41:24.744] [bmv2] [D] [thread 5467] Adding interface s1-eth1 as port 1
+Adding interface s1-eth2 as port 2
+[10:41:24.764] [bmv2] [D] [thread 5467] Adding interface s1-eth2 as port 2
+Adding interface s1-eth3 as port 3
+[10:41:24.793] [bmv2] [D] [thread 5467] Adding interface s1-eth3 as port 3
+[10:41:24.817] [bmv2] [I] [thread 5467] Starting Thrift server on port 9090
+[10:41:24.818] [bmv2] [I] [thread 5467] Thrift server was started
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Processing packet received on port 1
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Parser 'parser': start
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] Bytes parsed: 0
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Extracting header 'ethernet'
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] Bytes parsed: 14
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Parser 'parser': end
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Pipeline 'ingress': start
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:24.914] [bmv2] [T] [thread 5473] [0.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Pipeline 'ingress': end
+[10:41:24.914] [bmv2] [D] [thread 5473] [0.0] [cxt 0] Egress port is 255
+[10:41:24.914] [bmv2] [D] [thread 5477] [0.0] [cxt 0] Pipeline 'egress': start
+[10:41:24.914] [bmv2] [D] [thread 5477] [0.0] [cxt 0] Pipeline 'egress': end
+[10:41:24.914] [bmv2] [D] [thread 5477] [0.0] [cxt 0] Deparser 'deparser': start
+[10:41:24.914] [bmv2] [T] [thread 5477] [0.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:24.914] [bmv2] [D] [thread 5477] [0.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:24.914] [bmv2] [D] [thread 5477] [0.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:24.914] [bmv2] [D] [thread 5477] [0.0] [cxt 0] Deparser 'deparser': end
+[10:41:24.914] [bmv2] [D] [thread 5478] [0.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Processing packet received on port 2
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Parser 'parser': start
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] Bytes parsed: 0
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] Bytes parsed: 14
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Parser 'parser': end
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.225] [bmv2] [T] [thread 5473] [1.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.225] [bmv2] [D] [thread 5473] [1.0] [cxt 0] Egress port is 255
+[10:41:25.225] [bmv2] [D] [thread 5477] [1.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.225] [bmv2] [D] [thread 5477] [1.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.225] [bmv2] [D] [thread 5477] [1.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.225] [bmv2] [T] [thread 5477] [1.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.225] [bmv2] [D] [thread 5477] [1.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.225] [bmv2] [D] [thread 5477] [1.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.225] [bmv2] [D] [thread 5477] [1.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.225] [bmv2] [D] [thread 5478] [1.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:25.421] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Processing packet received on port 3
+[10:41:25.421] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Parser 'parser': start
+[10:41:25.421] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Parser state 'start': key is 0003
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] Bytes parsed: 0
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] Bytes parsed: 14
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Parser 'parser': end
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0003
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.422] [bmv2] [T] [thread 5473] [2.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.422] [bmv2] [D] [thread 5473] [2.0] [cxt 0] Egress port is 255
+[10:41:25.422] [bmv2] [D] [thread 5477] [2.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.422] [bmv2] [D] [thread 5477] [2.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.422] [bmv2] [D] [thread 5477] [2.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.422] [bmv2] [T] [thread 5477] [2.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.422] [bmv2] [D] [thread 5477] [2.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.422] [bmv2] [D] [thread 5477] [2.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.422] [bmv2] [D] [thread 5477] [2.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.422] [bmv2] [D] [thread 5478] [2.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Processing packet received on port 2
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Parser 'parser': start
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] Bytes parsed: 0
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] Bytes parsed: 14
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Parser 'parser': end
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.553] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.553] [bmv2] [T] [thread 5473] [3.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.554] [bmv2] [T] [thread 5473] [3.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.554] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.554] [bmv2] [D] [thread 5473] [3.0] [cxt 0] Egress port is 255
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Processing packet received on port 2
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Parser 'parser': start
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] Bytes parsed: 0
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] Bytes parsed: 14
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Parser 'parser': end
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000002
+
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.554] [bmv2] [T] [thread 5473] [4.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.554] [bmv2] [D] [thread 5473] [4.0] [cxt 0] Egress port is 255
+[10:41:25.554] [bmv2] [D] [thread 5477] [3.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.554] [bmv2] [D] [thread 5477] [3.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.554] [bmv2] [D] [thread 5477] [3.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.554] [bmv2] [T] [thread 5477] [3.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.554] [bmv2] [D] [thread 5477] [3.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.554] [bmv2] [D] [thread 5477] [3.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.554] [bmv2] [D] [thread 5477] [3.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.554] [bmv2] [D] [thread 5477] [4.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.554] [bmv2] [D] [thread 5477] [4.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.554] [bmv2] [D] [thread 5477] [4.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.554] [bmv2] [T] [thread 5477] [4.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.554] [bmv2] [D] [thread 5477] [4.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.554] [bmv2] [D] [thread 5477] [4.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.554] [bmv2] [D] [thread 5477] [4.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.554] [bmv2] [D] [thread 5478] [3.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:25.554] [bmv2] [D] [thread 5478] [4.0] [cxt 0] Transmitting packet of size 72 out of port 255
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Processing packet received on port 1
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Parser 'parser': start
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:25.601] [bmv2] [T] [thread 5473] [5.0] [cxt 0] Bytes parsed: 0
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.601] [bmv2] [T] [thread 5473] [5.0] [cxt 0] Bytes parsed: 14
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Parser 'parser': end
+[10:41:25.601] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.601] [bmv2] [T] [thread 5473] [5.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.601] [bmv2] [T] [thread 5473] [5.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.602] [bmv2] [T] [thread 5473] [5.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.602] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:25.602] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.602] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.602] [bmv2] [T] [thread 5473] [5.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.602] [bmv2] [T] [thread 5473] [5.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.602] [bmv2] [T] [thread 5473] [5.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.602] [bmv2] [T] [thread 5473] [5.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.602] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.602] [bmv2] [D] [thread 5473] [5.0] [cxt 0] Egress port is 255
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Processing packet received on port 1
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Parser 'parser': start
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] Bytes parsed: 0
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] Bytes parsed: 14
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Parser 'parser': end
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000002
+
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.602] [bmv2] [T] [thread 5473] [6.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.602] [bmv2] [D] [thread 5473] [6.0] [cxt 0] Egress port is 255
+[10:41:25.602] [bmv2] [D] [thread 5477] [5.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.602] [bmv2] [D] [thread 5477] [5.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.602] [bmv2] [D] [thread 5477] [5.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.602] [bmv2] [T] [thread 5477] [5.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.602] [bmv2] [D] [thread 5477] [5.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.602] [bmv2] [D] [thread 5477] [5.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.602] [bmv2] [D] [thread 5477] [5.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.602] [bmv2] [D] [thread 5477] [6.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.602] [bmv2] [D] [thread 5477] [6.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.602] [bmv2] [D] [thread 5477] [6.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.602] [bmv2] [T] [thread 5477] [6.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.602] [bmv2] [D] [thread 5477] [6.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.602] [bmv2] [D] [thread 5477] [6.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.602] [bmv2] [D] [thread 5477] [6.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.602] [bmv2] [D] [thread 5478] [5.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:25.602] [bmv2] [D] [thread 5478] [6.0] [cxt 0] Transmitting packet of size 72 out of port 255
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Processing packet received on port 1
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Parser 'parser': start
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] Bytes parsed: 0
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Extracting header 'ethernet'
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] Bytes parsed: 14
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Parser 'parser': end
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Pipeline 'ingress': start
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:25.705] [bmv2] [T] [thread 5473] [7.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Pipeline 'ingress': end
+[10:41:25.705] [bmv2] [D] [thread 5473] [7.0] [cxt 0] Egress port is 255
+[10:41:25.705] [bmv2] [D] [thread 5477] [7.0] [cxt 0] Pipeline 'egress': start
+[10:41:25.705] [bmv2] [D] [thread 5477] [7.0] [cxt 0] Pipeline 'egress': end
+[10:41:25.706] [bmv2] [D] [thread 5477] [7.0] [cxt 0] Deparser 'deparser': start
+[10:41:25.706] [bmv2] [T] [thread 5477] [7.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:25.706] [bmv2] [D] [thread 5477] [7.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:25.706] [bmv2] [D] [thread 5477] [7.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:25.706] [bmv2] [D] [thread 5477] [7.0] [cxt 0] Deparser 'deparser': end
+[10:41:25.706] [bmv2] [D] [thread 5478] [7.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Processing packet received on port 1
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Parser 'parser': start
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] Bytes parsed: 0
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Extracting header 'ethernet'
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] Bytes parsed: 14
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Parser 'parser': end
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Pipeline 'ingress': start
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:26.345] [bmv2] [T] [thread 5473] [8.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Pipeline 'ingress': end
+[10:41:26.345] [bmv2] [D] [thread 5473] [8.0] [cxt 0] Egress port is 255
+[10:41:26.345] [bmv2] [D] [thread 5477] [8.0] [cxt 0] Pipeline 'egress': start
+[10:41:26.345] [bmv2] [D] [thread 5477] [8.0] [cxt 0] Pipeline 'egress': end
+[10:41:26.345] [bmv2] [D] [thread 5477] [8.0] [cxt 0] Deparser 'deparser': start
+[10:41:26.345] [bmv2] [T] [thread 5477] [8.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:26.345] [bmv2] [D] [thread 5477] [8.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:26.345] [bmv2] [D] [thread 5477] [8.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:26.345] [bmv2] [D] [thread 5477] [8.0] [cxt 0] Deparser 'deparser': end
+[10:41:26.345] [bmv2] [D] [thread 5478] [8.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Processing packet received on port 2
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Parser 'parser': start
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:26.410] [bmv2] [T] [thread 5473] [9.0] [cxt 0] Bytes parsed: 0
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Extracting header 'ethernet'
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:26.410] [bmv2] [T] [thread 5473] [9.0] [cxt 0] Bytes parsed: 14
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Parser 'parser': end
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Pipeline 'ingress': start
+[10:41:26.410] [bmv2] [T] [thread 5473] [9.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:26.410] [bmv2] [T] [thread 5473] [9.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:26.410] [bmv2] [T] [thread 5473] [9.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:26.410] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:26.411] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:26.411] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:26.411] [bmv2] [T] [thread 5473] [9.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:26.411] [bmv2] [T] [thread 5473] [9.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:26.411] [bmv2] [T] [thread 5473] [9.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:26.411] [bmv2] [T] [thread 5473] [9.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:26.411] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Pipeline 'ingress': end
+[10:41:26.411] [bmv2] [D] [thread 5473] [9.0] [cxt 0] Egress port is 255
+[10:41:26.411] [bmv2] [D] [thread 5477] [9.0] [cxt 0] Pipeline 'egress': start
+[10:41:26.411] [bmv2] [D] [thread 5477] [9.0] [cxt 0] Pipeline 'egress': end
+[10:41:26.411] [bmv2] [D] [thread 5477] [9.0] [cxt 0] Deparser 'deparser': start
+[10:41:26.411] [bmv2] [T] [thread 5477] [9.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:26.411] [bmv2] [D] [thread 5477] [9.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:26.411] [bmv2] [D] [thread 5477] [9.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:26.411] [bmv2] [D] [thread 5477] [9.0] [cxt 0] Deparser 'deparser': end
+[10:41:26.411] [bmv2] [D] [thread 5478] [9.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:26.480] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Processing packet received on port 3
+[10:41:26.480] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Parser 'parser': start
+[10:41:26.480] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:26.480] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Parser state 'start': key is 0003
+[10:41:26.480] [bmv2] [T] [thread 5473] [10.0] [cxt 0] Bytes parsed: 0
+[10:41:26.480] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:26.480] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Extracting header 'ethernet'
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] Bytes parsed: 14
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Parser 'parser': end
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Pipeline 'ingress': start
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0003
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:26.481] [bmv2] [T] [thread 5473] [10.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Pipeline 'ingress': end
+[10:41:26.481] [bmv2] [D] [thread 5473] [10.0] [cxt 0] Egress port is 255
+[10:41:26.481] [bmv2] [D] [thread 5477] [10.0] [cxt 0] Pipeline 'egress': start
+[10:41:26.481] [bmv2] [D] [thread 5477] [10.0] [cxt 0] Pipeline 'egress': end
+[10:41:26.481] [bmv2] [D] [thread 5477] [10.0] [cxt 0] Deparser 'deparser': start
+[10:41:26.481] [bmv2] [T] [thread 5477] [10.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:26.481] [bmv2] [D] [thread 5477] [10.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:26.481] [bmv2] [D] [thread 5477] [10.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:26.481] [bmv2] [D] [thread 5477] [10.0] [cxt 0] Deparser 'deparser': end
+[10:41:26.481] [bmv2] [D] [thread 5478] [10.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Processing packet received on port 2
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Parser 'parser': start
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] Bytes parsed: 0
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Extracting header 'ethernet'
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] Bytes parsed: 14
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Parser 'parser': end
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Pipeline 'ingress': start
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:26.493] [bmv2] [T] [thread 5473] [11.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Pipeline 'ingress': end
+[10:41:26.493] [bmv2] [D] [thread 5473] [11.0] [cxt 0] Egress port is 255
+[10:41:26.493] [bmv2] [D] [thread 5477] [11.0] [cxt 0] Pipeline 'egress': start
+[10:41:26.494] [bmv2] [D] [thread 5477] [11.0] [cxt 0] Pipeline 'egress': end
+[10:41:26.494] [bmv2] [D] [thread 5477] [11.0] [cxt 0] Deparser 'deparser': start
+[10:41:26.494] [bmv2] [T] [thread 5477] [11.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:26.494] [bmv2] [D] [thread 5477] [11.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:26.494] [bmv2] [D] [thread 5477] [11.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:26.494] [bmv2] [D] [thread 5477] [11.0] [cxt 0] Deparser 'deparser': end
+[10:41:26.494] [bmv2] [D] [thread 5478] [11.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Processing packet received on port 1
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Parser 'parser': start
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] Bytes parsed: 0
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Extracting header 'ethernet'
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] Bytes parsed: 14
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Parser 'parser': end
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Pipeline 'ingress': start
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:26.817] [bmv2] [T] [thread 5473] [12.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Pipeline 'ingress': end
+[10:41:26.817] [bmv2] [D] [thread 5473] [12.0] [cxt 0] Egress port is 255
+[10:41:26.818] [bmv2] [D] [thread 5477] [12.0] [cxt 0] Pipeline 'egress': start
+[10:41:26.818] [bmv2] [D] [thread 5477] [12.0] [cxt 0] Pipeline 'egress': end
+[10:41:26.818] [bmv2] [D] [thread 5477] [12.0] [cxt 0] Deparser 'deparser': start
+[10:41:26.818] [bmv2] [T] [thread 5477] [12.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:26.818] [bmv2] [D] [thread 5477] [12.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:26.818] [bmv2] [D] [thread 5477] [12.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:26.818] [bmv2] [D] [thread 5477] [12.0] [cxt 0] Deparser 'deparser': end
+[10:41:26.818] [bmv2] [D] [thread 5478] [12.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Processing packet received on port 3
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Parser 'parser': start
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Parser state 'start': key is 0003
+[10:41:27.022] [bmv2] [T] [thread 5473] [13.0] [cxt 0] Bytes parsed: 0
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Extracting header 'ethernet'
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:27.022] [bmv2] [T] [thread 5473] [13.0] [cxt 0] Bytes parsed: 14
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Parser 'parser': end
+[10:41:27.022] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Pipeline 'ingress': start
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:27.023] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0003
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:27.023] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:27.023] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:27.023] [bmv2] [T] [thread 5473] [13.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:27.023] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Pipeline 'ingress': end
+[10:41:27.023] [bmv2] [D] [thread 5473] [13.0] [cxt 0] Egress port is 255
+[10:41:27.023] [bmv2] [D] [thread 5477] [13.0] [cxt 0] Pipeline 'egress': start
+[10:41:27.023] [bmv2] [D] [thread 5477] [13.0] [cxt 0] Pipeline 'egress': end
+[10:41:27.023] [bmv2] [D] [thread 5477] [13.0] [cxt 0] Deparser 'deparser': start
+[10:41:27.023] [bmv2] [T] [thread 5477] [13.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:27.023] [bmv2] [D] [thread 5477] [13.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:27.023] [bmv2] [D] [thread 5477] [13.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:27.023] [bmv2] [D] [thread 5477] [13.0] [cxt 0] Deparser 'deparser': end
+[10:41:27.023] [bmv2] [D] [thread 5478] [13.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Processing packet received on port 2
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Parser 'parser': start
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:27.185] [bmv2] [T] [thread 5473] [14.0] [cxt 0] Bytes parsed: 0
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Extracting header 'ethernet'
+[10:41:27.185] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:27.185] [bmv2] [T] [thread 5473] [14.0] [cxt 0] Bytes parsed: 14
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Parser 'parser': end
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Pipeline 'ingress': start
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000016
+
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:27.186] [bmv2] [T] [thread 5473] [14.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Pipeline 'ingress': end
+[10:41:27.186] [bmv2] [D] [thread 5473] [14.0] [cxt 0] Egress port is 255
+[10:41:27.186] [bmv2] [D] [thread 5477] [14.0] [cxt 0] Pipeline 'egress': start
+[10:41:27.186] [bmv2] [D] [thread 5477] [14.0] [cxt 0] Pipeline 'egress': end
+[10:41:27.186] [bmv2] [D] [thread 5477] [14.0] [cxt 0] Deparser 'deparser': start
+[10:41:27.186] [bmv2] [T] [thread 5477] [14.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:27.186] [bmv2] [D] [thread 5477] [14.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:27.186] [bmv2] [D] [thread 5477] [14.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:27.186] [bmv2] [D] [thread 5477] [14.0] [cxt 0] Deparser 'deparser': end
+[10:41:27.186] [bmv2] [D] [thread 5478] [14.0] [cxt 0] Transmitting packet of size 92 out of port 255
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Processing packet received on port 2
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Parser 'parser': start
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Parser state 'start': key is 0002
+[10:41:29.557] [bmv2] [T] [thread 5473] [15.0] [cxt 0] Bytes parsed: 0
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Extracting header 'ethernet'
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:29.557] [bmv2] [T] [thread 5473] [15.0] [cxt 0] Bytes parsed: 14
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Parser 'parser': end
+[10:41:29.557] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Pipeline 'ingress': start
+[10:41:29.557] [bmv2] [T] [thread 5473] [15.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:29.558] [bmv2] [T] [thread 5473] [15.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:29.558] [bmv2] [T] [thread 5473] [15.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:29.558] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0002
+* hdr.ethernet.dstAddr          : 333300000002
+
+[10:41:29.558] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:29.558] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:29.558] [bmv2] [T] [thread 5473] [15.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:29.558] [bmv2] [T] [thread 5473] [15.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:29.558] [bmv2] [T] [thread 5473] [15.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:29.558] [bmv2] [T] [thread 5473] [15.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:29.558] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Pipeline 'ingress': end
+[10:41:29.558] [bmv2] [D] [thread 5473] [15.0] [cxt 0] Egress port is 255
+[10:41:29.558] [bmv2] [D] [thread 5477] [15.0] [cxt 0] Pipeline 'egress': start
+[10:41:29.558] [bmv2] [D] [thread 5477] [15.0] [cxt 0] Pipeline 'egress': end
+[10:41:29.558] [bmv2] [D] [thread 5477] [15.0] [cxt 0] Deparser 'deparser': start
+[10:41:29.558] [bmv2] [T] [thread 5477] [15.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:29.558] [bmv2] [D] [thread 5477] [15.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:29.558] [bmv2] [D] [thread 5477] [15.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:29.558] [bmv2] [D] [thread 5477] [15.0] [cxt 0] Deparser 'deparser': end
+[10:41:29.558] [bmv2] [D] [thread 5478] [15.0] [cxt 0] Transmitting packet of size 72 out of port 255
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Processing packet received on port 1
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Parser 'parser': start
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Parser 'parser' entering state 'start'
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Parser state 'start': key is 0001
+[10:41:29.605] [bmv2] [T] [thread 5473] [16.0] [cxt 0] Bytes parsed: 0
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Parser 'parser' entering state 'parse_ethernet'
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Extracting header 'ethernet'
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Parser state 'parse_ethernet': key is 86dd
+[10:41:29.605] [bmv2] [T] [thread 5473] [16.0] [cxt 0] Bytes parsed: 14
+[10:41:29.605] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Parser 'parser': end
+[10:41:29.606] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Pipeline 'ingress': start
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] includes/ipv4_forward.p4(37) Condition "hdr.ipv4.isValid()" (node_2) is false
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] includes/arp.p4(38) Condition "standard_metadata.ingress_port == 255" (node_4) is false
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] Applying table 'basic_learning_switch_ingress.arp.arp_exact'
+[10:41:29.606] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Looking up key:
+* standard_metadata.ingress_port: 0001
+* hdr.ethernet.dstAddr          : 333300000002
+
+[10:41:29.606] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Table 'basic_learning_switch_ingress.arp.arp_exact': miss
+[10:41:29.606] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Action entry is basic_learning_switch_ingress.arp.send_to_cpu - 
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] Action basic_learning_switch_ingress.arp.send_to_cpu
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] includes/arp.p4(11) Primitive standard_metadata.egress_spec = 255
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] includes/arp.p4(12) Primitive hdr.packet_in.setValid()
+[10:41:29.606] [bmv2] [T] [thread 5473] [16.0] [cxt 0] includes/arp.p4(13) Primitive hdr.packet_in.ingress_port = (bit<16>) standard_metadata.ingress_port
+[10:41:29.606] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Pipeline 'ingress': end
+[10:41:29.606] [bmv2] [D] [thread 5473] [16.0] [cxt 0] Egress port is 255
+[10:41:29.606] [bmv2] [D] [thread 5477] [16.0] [cxt 0] Pipeline 'egress': start
+[10:41:29.606] [bmv2] [D] [thread 5477] [16.0] [cxt 0] Pipeline 'egress': end
+[10:41:29.606] [bmv2] [D] [thread 5477] [16.0] [cxt 0] Deparser 'deparser': start
+[10:41:29.606] [bmv2] [T] [thread 5477] [16.0] [cxt 0] Skipping checksum 'cksum' update because condition not met
+[10:41:29.606] [bmv2] [D] [thread 5477] [16.0] [cxt 0] Deparsing header 'packet_in'
+[10:41:29.606] [bmv2] [D] [thread 5477] [16.0] [cxt 0] Deparsing header 'ethernet'
+[10:41:29.606] [bmv2] [D] [thread 5477] [16.0] [cxt 0] Deparser 'deparser': end
+[10:41:29.606] [bmv2] [D] [thread 5478] [16.0] [cxt 0] Transmitting packet of size 72 out of port 255
