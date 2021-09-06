@@ -1,15 +1,59 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*- 
 import argparse, os, sys, grpc
+from time import sleep
+from scapy.all import *
 
 # set lib path
 sys.path.append(
 	os.path.join(os.path.dirname(os.path.abspath(__file__)),
 	'../utils/'))
 
+SWITCH_TO_HOST_PORT = 1
+SWITCH_TO_SWITCH_PORT = 2 
+
 # and them import
 # from p4runtime_lib.switch import ShutdownAllSwitchConnections
-import p4runtime_lib.switch
+from p4runtime_lib.switch import ShutdownAllSwitchConnections
 import p4runtime_lib.helper
 import p4runtime_lib.bmv2
+
+def writeARPFlood(p4info_helper, sw, in_port, dst_eth_addr, port=None):
+	table_entry = p4info_helper.buildTableEntry(
+		table_name = "basic_learning_switch_ingress.arp.arp_exact",
+		match_fields = {
+			"standard_metadata.ingress_port" : in_port,
+			"hdr.ethernet.dstAddr" : dst_eth_addr
+		},
+		action_name = "basic_learning_switch_ingress.arp.flooding",
+		action_params = {
+		}
+	)
+	sw.WriteTableEntry(table_entry)
+	print "Installed ARP Flooding rule via P4Runtime."
+
+def writeARPReply(p4info_helper, sw, in_port, dst_eth_addr, port=None):
+	table_entry = p4info_helper.buildTableEntry(
+		table_name = "basic_learning_switch_ingress.arp.arp_exact",
+		match_fields = {
+			"standard_metadata.ingress_port" : in_port,
+			"hdr.ethernet.dstAddr" : dst_eth_addr
+		},
+		action_name = "basic_learning_switch_ingress.arp.arp_reply",
+		action_params = {
+			"port" : port
+		}
+	)
+	sw.WriteTableEntry(table_entry)
+	print "Installed ARP Reply rule via P4Runtime."	
+
+def printGrpcError(e):
+    print "gRPC Error: ", e.details(),
+    status_code = e.code()
+    print "(%s)" % status_code.name,
+    # detail about sys.exc_info - https://docs.python.org/2/library/sys.html#sys.exc_info
+    traceback = sys.exc_info()[2]
+    print "[%s:%s]" % (traceback.tb_frame.f_code.co_filename, traceback.tb_lineno)
 
 # MAIN FUNCTION
 def main(p4info_file_path, bmv2_file_path):
@@ -40,7 +84,7 @@ def main(p4info_file_path, bmv2_file_path):
 		s1.MasterArbitrationUpdate()
 
 		# Install the target P4 program to the switch
-		s1.setForwardingPipelineConfig(p4info=p4info_helper.p4info,
+		s1.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
 			bmv2_json_file_path = bmv2_file_path)
 
 		print "Installed P4 Program using SetForardingPipelineConfig on s1"
@@ -59,6 +103,7 @@ def main(p4info_file_path, bmv2_file_path):
 
 		# p4info_pb2 -> p4.config.v1
 		# p4runtime_pb2 -> p4.v1
+		# s1 is controller and we process packets incoming to s1
 		while True:
 			packetin = s1.PacketIn()
 			if packetin.WhichOneof('update') == 'packet':
@@ -78,7 +123,7 @@ def main(p4info_file_path, bmv2_file_path):
 				if ether_type == 2048 or ether_type == 2054:
 					# Get value of pkt_eth_src in dictionary port_map
 					# if pkt_eth_src not exist insert it with value
-					port_map.setdefault(pkt_eth_src, value)
+					port_map.setdefault(pkt_eth_src, value) # source router and incoming port
 					# map output port to destinations possible
 					arg_rules.setdefault(value, [])
 
