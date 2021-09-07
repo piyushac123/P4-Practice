@@ -92,10 +92,10 @@ def main(p4info_file_path, bmv2_file_path):
 		# Build Multicast Group Entry
 		mc_group_entry = p4info_helper.buildMCEntry(
 			mc_group_id = 1,
-			relicas = {
-			1:1,
-			2:2,
-			3:3
+			replicas = {
+				1:1,
+				2:2,
+				3:3
 			})
 
 		s1.WritePRE(mc_group = mc_group_entry)
@@ -107,7 +107,7 @@ def main(p4info_file_path, bmv2_file_path):
 		while True:
 			packetin = s1.PacketIn()
 			if packetin.WhichOneof('update') == 'packet':
-				packet = pacektin.packet.payload
+				packet = packetin.packet.payload
 				pkt = Ether(_pkt=packet)
 				metadata = packetin.packet.metadata
 				# meta.value -> port value
@@ -125,7 +125,7 @@ def main(p4info_file_path, bmv2_file_path):
 					# if pkt_eth_src not exist insert it with value
 					port_map.setdefault(pkt_eth_src, value) # source router and incoming port
 					# map output port to destinations possible
-					arg_rules.setdefault(value, [])
+					arp_rules.setdefault(value, [])
 
 					if pkt_eth_dst == bcast:
 						if bcast not in arp_rules:
@@ -156,7 +156,7 @@ def main(p4info_file_path, bmv2_file_path):
 							arp_rules[value].append(pkt_eth_dst)
 						if pkt_eth_src not in arp_rules[port_map[pkt_eth_dst]]:
 							# dst -> sw=s1[in_port(port_map[pkt_eth_dst]) -> port(port_map[pkt_eth_src])] -> src
-							writeARPReply(p4info_helper,sw=s1,in_port=port_map[pkt_eth_dst], port = port_map[pkt_eth_src])
+							writeARPReply(p4info_helper,sw=s1,in_port=port_map[pkt_eth_dst],dst_eth_addr=pkt_eth_dst, port = port_map[pkt_eth_src])
 							arp_rules[port_map[pkt_eth_dst]].append(pkt_eth_src)
 
 						packetout = p4info_helper.buildPacketOut(
